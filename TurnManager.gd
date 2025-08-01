@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 				await ennemy.move(GridManager.find_placeable_cell(ennemy.ennemy) + Vector2i.DOWN)
 				
 			for bullet in bullets:
-				await bullet.move(GridManager.find_placeable_cell(bullet.bullet) + Vector2i.RIGHT)
+				await bullet.move(GridManager.find_placeable_cell(bullet.bullet))
 				
 			game_state = STATES.PLAYER_TURN
 			pass

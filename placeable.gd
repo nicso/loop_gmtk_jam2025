@@ -12,15 +12,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func move_to_cell(cell:Vector2i, callback)->void:
+func move_to_cell(cell:Vector2i  , callback, teleport=false)->void:
 	if GridManager.get_cell(GridManager.wrap_coordinates( cell) ) != null:
 		return
 	if sprite != null:
 		sprite.visible = GridManager.is_cell_in_bounds(cell)
 	GridManager.set_cell(GridManager.find_placeable_cell(self), null)
 	GridManager.set_cell(cell, self)
-	move(GridManager.get_cell_to_world_position(cell) , callback)
-
+	if teleport:
+		teleport(GridManager.get_cell_to_world_position(cell), callback)
+	else:
+		move(GridManager.get_cell_to_world_position(cell) , callback)
+		
+func teleport(position:Vector2i, callback):
+	position = position
+	
 func move(position:Vector2, callback):
 	if not tween:
 		tween = get_tree().create_tween()
