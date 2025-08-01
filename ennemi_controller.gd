@@ -1,6 +1,7 @@
 class_name EnnemyController
 extends Node
 @onready var ennemy: Placeable = $".."
+@onready var shooter = get_parent().get_node("Shooter")
 @export var starting_pos:Vector2i
 var tween: Tween
 
@@ -12,4 +13,5 @@ func move(dir)->void:
 	ennemy.move_to_cell(dir, on_move_finished)
 	
 func on_move_finished():
-	pass
+	if shooter != null:
+		shooter.shoot()

@@ -42,6 +42,33 @@ func get_cell_to_world_position(cell: Vector2i) -> Vector2:
 	)
 	return pos
 
+func get_placeables_on_cols(cell:Vector2i) -> Array[Placeable]:
+	var placeables:Array[Placeable]=[]
+	for y in range(grid_height):
+		if grid[y][cell.x] != null:
+			placeables.append( grid[y][cell.x])
+	return placeables
+
+func get_placeables_on_rows(cell:Vector2i) -> Array[Placeable]:
+	var placeables:Array[Placeable]=[]
+	for x in range(grid_width):
+		if grid[cell.y][x] != null:
+			placeables.append( grid[cell.y][x])
+	return placeables
+
+func get_direction_to_target(cell:Vector2i, target:Vector2i)->Vector2i:
+	var dir = Vector2i.ZERO
+	dir.x = 1 if cell.x < target.x else -1
+	dir.y = 1 if cell.y < target.y else -1
+	return dir
+
+func is_cell_in_bounds(cell:Vector2i)->bool:
+	if cell.x < 0 or cell.x  >= VarGlobals.grid_width:
+		return false
+	if cell.y < 0 or cell.y  >= VarGlobals.grid_height:
+		return false
+	return true
+	
 func draw_grid() -> void:
 	for y in range(grid_height):
 		for x in range(grid_width):
