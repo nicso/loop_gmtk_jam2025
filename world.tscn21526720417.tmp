@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://6kysyuupg4a4"]
+
+[ext_resource type="Texture2D" uid="uid://b451xjrngfxcb" path="res://assets/gfx/sprites/ennemy01.png" id="1_036b0"]
+[ext_resource type="Script" uid="uid://bwju08rt2ryda" path="res://player_controller.gd" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://in4qx3jiorax" path="res://ennemi_controller.gd" id="2_tlwt5"]
+[ext_resource type="Script" uid="uid://bgfctrnn43p8o" path="res://placeable.gd" id="3_dwbse"]
+[ext_resource type="Texture2D" uid="uid://bgoif8vh4enob" path="res://assets/gfx/sprites/player.png" id="4_dwbse"]
+
+[node name="world" type="Node2D"]
+
+[node name="ennemi" type="Node2D" parent="."]
+position = Vector2(665, 143)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ennemi"]
+texture = ExtResource("1_036b0")
+
+[node name="EnnemiController" type="Node" parent="ennemi"]
+script = ExtResource("2_tlwt5")
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("3_dwbse")
+metadata/_custom_type_script = "uid://bgfctrnn43p8o"
+metadata/_edit_group_ = true
+
+[node name="PlayerController" type="Node" parent="Player"]
+script = ExtResource("1_f3sb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("4_dwbse")
+
+[node name="ennemi2" type="Node2D" parent="."]
+position = Vector2(676, 329)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ennemi2"]
+texture = ExtResource("1_036b0")
+
+[node name="EnnemiController" type="Node" parent="ennemi2"]
+script = ExtResource("2_tlwt5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
