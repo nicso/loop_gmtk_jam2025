@@ -2,11 +2,10 @@ extends Node
 enum STATES {PLAYER_TURN, ENNEMI_TURN}
 var game_state : STATES = STATES.PLAYER_TURN
 var ennemies = []
+var bullets = []
 
 func _ready() -> void:
 	SignalBus.connect("player_moved", on_player_moved)
-	
-
 	
 func _process(delta: float) -> void:
 	match game_state:
@@ -14,7 +13,11 @@ func _process(delta: float) -> void:
 			pass
 		STATES.ENNEMI_TURN:
 			for ennemy in ennemies:
-				await ennemy.move_to_cell(GridManager.find_placeable_cell(ennemy)+Vector2i.DOWN, on_ennemy_moved)
+				await ennemy.move(GridManager.find_placeable_cell(ennemy.ennemy) + Vector2i.DOWN)
+				
+			for bullet in bullets:
+				await bullet.move(GridManager.find_placeable_cell(bullet.bullet) + Vector2i.RIGHT)
+				
 			game_state = STATES.PLAYER_TURN
 			pass
 
