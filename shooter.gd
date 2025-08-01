@@ -1,10 +1,13 @@
 extends Node
 class_name Shooter
 const BULLET = preload("res://bullet.tscn")
+@onready var player: Placeable = %Player
+
 func shoot():
 	var shooter_position = GridManager.find_placeable_cell(get_parent())
 	var placeables_on_row = GridManager.get_placeables_on_rows(shooter_position)
-	
+	if distance_to_player() <= 2:
+		return
 	for placeable in placeables_on_row:
 		if placeable.is_in_group("player") :
 			var bullet = BULLET.instantiate() 
@@ -19,3 +22,10 @@ func player_direction(player)->Vector2i:
 	return GridManager.get_direction_to_target(
 				GridManager.find_placeable_cell(get_parent()),
 				GridManager.find_placeable_cell(player))
+
+
+func distance_to_player()->int:
+	var from = GridManager.find_placeable_cell(get_parent())
+	var to = GridManager.find_placeable_cell(player)
+	return GridManager.get_distance_between(from, to)
+	

@@ -3,6 +3,9 @@ extends Node
 @onready var ennemy: Placeable = $".."
 @onready var shooter = get_parent().get_node("Shooter")
 @export var starting_pos:Vector2i
+@onready var player: Placeable = %Player
+
+
 var tween: Tween
 
 func _ready() -> void:
@@ -15,3 +18,4 @@ func move(dir)->void:
 func on_move_finished():
 	if shooter != null:
 		shooter.shoot()
+	

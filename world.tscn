@@ -26,23 +26,8 @@ starting_pos = Vector2i(8, 3)
 [node name="Shooter" type="Node" parent="ennemi"]
 script = ExtResource("4_pkg7o")
 
-[node name="ennemi2" type="Node2D" parent="."]
-position = Vector2(227, 145)
-script = ExtResource("3_dwbse")
-metadata/_custom_type_script = "uid://bgfctrnn43p8o"
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ennemi2"]
-texture = ExtResource("1_036b0")
-
-[node name="EnnemiController" type="Node" parent="ennemi2"]
-script = ExtResource("2_tlwt5")
-starting_pos = Vector2i(3, 2)
-
-[node name="Shooter" type="Node" parent="ennemi2"]
-script = ExtResource("4_pkg7o")
-
 [node name="Player" type="Node2D" parent="." groups=["player"]]
+unique_name_in_owner = true
 script = ExtResource("3_dwbse")
 metadata/_custom_type_script = "uid://bgfctrnn43p8o"
 metadata/_edit_group_ = true

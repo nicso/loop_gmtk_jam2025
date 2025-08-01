@@ -62,6 +62,10 @@ func get_direction_to_target(cell:Vector2i, target:Vector2i)->Vector2i:
 	dir.y = 1 if cell.y < target.y else -1
 	return dir
 
+func get_distance_between(cell:Vector2i, target:Vector2i)->int:
+	var distance = abs(cell.x - target.x) + abs(cell.y - target.y)
+	return distance
+
 func is_cell_in_bounds(cell:Vector2i)->bool:
 	if cell.x < 0 or cell.x  >= VarGlobals.grid_width:
 		return false
