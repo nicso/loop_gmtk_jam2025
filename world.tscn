@@ -9,13 +9,27 @@
 [node name="world" type="Node2D"]
 
 [node name="ennemi" type="Node2D" parent="."]
-position = Vector2(665, 143)
+position = Vector2(-316, 14)
+script = ExtResource("3_dwbse")
+metadata/_custom_type_script = "uid://bgfctrnn43p8o"
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ennemi"]
 texture = ExtResource("1_036b0")
 
 [node name="EnnemiController" type="Node" parent="ennemi"]
+script = ExtResource("2_tlwt5")
+
+[node name="ennemi2" type="Node2D" parent="."]
+position = Vector2(227, 145)
+script = ExtResource("3_dwbse")
+metadata/_custom_type_script = "uid://bgfctrnn43p8o"
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ennemi2"]
+texture = ExtResource("1_036b0")
+
+[node name="EnnemiController" type="Node" parent="ennemi2"]
 script = ExtResource("2_tlwt5")
 
 [node name="Player" type="Node2D" parent="."]
@@ -28,15 +42,5 @@ script = ExtResource("1_f3sb7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("4_dwbse")
-
-[node name="ennemi2" type="Node2D" parent="."]
-position = Vector2(676, 329)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ennemi2"]
-texture = ExtResource("1_036b0")
-
-[node name="EnnemiController" type="Node" parent="ennemi2"]
-script = ExtResource("2_tlwt5")
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -22,6 +22,10 @@ TurnManager="*res://TurnManager.gd"
 VarGlobals="*res://varGlobals.gd"
 GridManager="*res://gridManager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 game_up={

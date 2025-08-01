@@ -7,8 +7,6 @@ const CELL = preload("res://cell.tscn")
 
 
 func _ready() -> void:
-	
-	# Initialisation : grid[y][x] (ligne puis colonne)
 	for y in range(grid_height):
 		var row = []
 		for x in range(grid_width):
@@ -20,7 +18,6 @@ func wrap_coordinates(cell: Vector2i) -> Vector2i:
 	var wrapped_x = cell.x % grid_width
 	var wrapped_y = cell.y % grid_height
 	
-	# Gérer les coordonnées négatives
 	if wrapped_x < 0:
 		wrapped_x += grid_width
 	if wrapped_y < 0:
@@ -34,8 +31,8 @@ func set_cell(cell: Vector2i, placeable: Placeable):
 
 func get_cell(cell: Vector2i) -> Placeable:
 	if cell.x >= 0 and cell.x < grid_width and cell.y >= 0 and cell.y < grid_height:
-		return grid[cell.y][cell.x]  # Changé de grid[cell.x][cell.y]
-	return null  # Ajout de vérification des limites
+		return grid[cell.y][cell.x]
+	return null  
 
 func get_cell_to_world_position(cell: Vector2i) -> Vector2:
 	var wrapped_cell = wrap_coordinates(cell)
@@ -56,7 +53,7 @@ func draw_grid() -> void:
 func find_placeable_cell(placeable: Placeable) -> Vector2i:
 	for y in range(grid_height):
 		for x in range(grid_width):
-			if grid[y][x] == placeable:  # Cohérent avec l'initialisation
+			if grid[y][x] == placeable:
 				return Vector2i(x, y)
 	return Vector2i(-1, -1)
 
@@ -64,6 +61,6 @@ func find_placeables_cell(placeable: Placeable) -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
 	for y in range(grid_height):
 		for x in range(grid_width):
-			if grid[y][x] == placeable:  # Cohérent avec l'initialisation
+			if grid[y][x] == placeable:
 				cells.append(Vector2i(x, y))
 	return cells
