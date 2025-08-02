@@ -54,6 +54,19 @@ func process_ennemy_turn()->void:
 func prosess_bullets_turn()->void:
 	bullets = bullets.filter(func(bullet): return bullet != null and is_instance_valid(bullet) and is_instance_valid(bullet.bullet))
 	for n in range(bullets.size()):
+		print("avant ",bullets[n].get_parent().position.y)
+	bullets.sort_custom(func(a: BulletController, b: BulletController):
+		var pos_a = GridManager.find_placeable_cell(a.bullet)
+		var pos_b = GridManager.find_placeable_cell(b.bullet)
+		
+		# D'abord comparer les y (lignes)
+		if pos_a.y != pos_b.y:
+			return pos_a.y < pos_b.y
+		# Si même ligne, comparer les x (colonnes)
+		return pos_a.x < pos_b.x
+	)
+	for n in range(bullets.size()):
+		print("après ",bullets[n].get_parent().position.y)
 		var bullet:BulletController = bullets[n]
 		var current_pos = GridManager.find_placeable_cell(bullet.bullet)
 		bullet.move(current_pos)

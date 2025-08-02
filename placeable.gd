@@ -21,11 +21,8 @@ func on_turn_finished()->void:
 
 func move_to_cell(cell:Vector2i  , callback, is_teleport=false)->void:
 	var wrapped_cell = GridManager.wrap_coordinates(cell)
-	if self.is_in_group("bullet"):
-			print_debug("moving bullet")
 	if GridManager.get_cell(GridManager.wrap_coordinates( cell) ) != null:
 		if self.is_in_group("bullet"):
-			print_debug("obstacle in front of a bullet")
 			kill()
 		callback.call()
 		return
