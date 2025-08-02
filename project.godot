@@ -29,6 +29,7 @@ window/stretch/mode="canvas_items"
 [gui]
 
 theme/custom_font="uid://bx28hywg1es37"
+theme/default_font_antialiasing=0
 
 [input]
 

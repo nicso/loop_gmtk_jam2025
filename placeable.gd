@@ -3,18 +3,21 @@ class_name Placeable
 
 var tween
 var facing := Vector2.RIGHT
-@onready var sprite = get_node("Sprite2D")
+@onready var sprite: Sprite2D = get_node("Sprite2D")
 
 func _ready() -> void:
-	pass
-	
+	SignalBus.connect("turn_finished", on_turn_finished)
+
+func on_turn_finished()->void:
+	if not self.is_in_group("player"):
+		sprite.flip_h = false if facing == Vector2.LEFT else true
+
 func _process(delta: float) -> void:
 	pass
 	
 func move_to_cell(cell:Vector2i  , callback, teleport=false)->void:
 	if GridManager.get_cell(GridManager.wrap_coordinates( cell) ) != null:
 		if self.is_in_group("bullet"):
-			
 			print("paf")
 		callback.call()
 		return

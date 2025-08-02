@@ -10,7 +10,8 @@ var is_moving: bool = false
 func _ready() -> void:
 	TurnManager.bullets.push_back(self)
 	bullet.move_to_cell(starting_pos, on_move_finished, true)
-	bullet.rotation = Vector2(direction).angle()
+	#bullet.rotation = Vector2(direction).angle() #TODO: change the sprite FlipH, not the rotation
+	bullet.facing = Vector2(direction)
 	
 func move(pos)->void:
 	if is_moving:

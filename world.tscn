@@ -135,18 +135,18 @@ script = ExtResource("1_f3sb7")
 position = Vector2(179, -107)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-256, -256)
 zoom = Vector2(0.125, 0.125)
 
 [node name="debug" type="Control" parent="Camera2D"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -557.0
-offset_top = -96.0
-offset_right = -308.0
-offset_bottom = 201.0
+offset_left = -4401.0
+offset_top = -1137.0
+offset_right = -2466.0
+offset_bottom = 1317.0
 size_flags_horizontal = 0
 script = ExtResource("8_gbfbk")
-metadata/_edit_lock_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/debug"]
 layout_mode = 1
@@ -159,4 +159,5 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_gbfbk")
+theme_override_font_sizes/font_size = 156
 text = "game status"

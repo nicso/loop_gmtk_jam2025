@@ -10,8 +10,9 @@ func shoot():
 		return
 	for placeable in placeables_on_row:
 		if placeable.is_in_group("player") :
-			var bullet_spawn_cell = GridManager.get_cell(shooter_position + GridManager.placeable_direction(placeable, get_parent()) ) 
-			if GridManager.find_placeables_cell(bullet_spawn_cell).size() == 0:
+			print("pew pew")
+			var bullet_spawn_cell = shooter_position + GridManager.placeable_direction(placeable, get_parent()) 
+			if GridManager.get_cell(bullet_spawn_cell) == null:
 				var bullet = BULLET.instantiate() 
 				var bulletController : BulletController = bullet.get_node("BulletController")
 				var player_direction = GridManager.placeable_direction(placeable, get_parent())
@@ -22,7 +23,8 @@ func shoot():
 				get_tree().root.add_child(bullet)
 				break
 			else :
-				print("could’nt shoot")
+				
+				print("could’nt shoot", GridManager.get_cell(bullet_spawn_cell).name)
 
 
 func distance_to_player()->int:

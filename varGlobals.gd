@@ -2,8 +2,8 @@ extends Node
 
 ## grid
 const gridSize = 512
-const grid_height := 9
-const grid_width := 13  
+const grid_height := 6
+const grid_width := 6  
 
 ## animation
 const player_tween = 0.2
