@@ -4,7 +4,12 @@ var tween_speed = 0.1
 var currentPosition = Vector2(0,0)
 
 var tween:Tween
-
+var input_map = {
+	"game_right": Vector2.RIGHT,
+	"game_left": Vector2.LEFT,
+	"game_down": Vector2.DOWN,
+	"game_up": Vector2.UP
+}
 func _ready() -> void:
 	player.move_to_cell(Vector2i(0,2), on_move_finished)
 	
@@ -20,6 +25,7 @@ func on_move_finished():
 	SignalBus.emit_signal("player_moved")
 
 func get_inputs_directions() -> Vector2:
-	var horizontal = int(Input.is_action_just_pressed("game_right")) - int(Input.is_action_just_pressed("game_left"))
-	var vertical = int(Input.is_action_just_pressed("game_down")) - int(Input.is_action_just_pressed("game_up"))
-	return Vector2(horizontal, vertical)
+	for action in input_map:
+		if Input.is_action_just_pressed(action):
+			return input_map[action]
+	return Vector2.ZERO
