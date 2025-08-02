@@ -40,7 +40,7 @@ func get_cell_to_world_position(cell: Vector2i) -> Vector2:
 		(wrapped_cell.x - grid_width/2.0) * VarGlobals.gridSize, 
 		(wrapped_cell.y - grid_height/2.0) * VarGlobals.gridSize
 	)
-	
+	pos.y += VarGlobals.y_offset
 	return pos
 
 func get_placeables_on_cols(cell:Vector2i) -> Array[Placeable]:
@@ -85,8 +85,9 @@ func find_placeable_cell(placeable: Placeable) -> Vector2i:
 	
 func direction_to_target(cell:Vector2i, target:Vector2i)->Vector2i:
 	var dir = Vector2i.ZERO
-	dir.x = 1 if cell.x < target.x else -1
-	dir.y = 1 if cell.y < target.y else -1
+	dir.x = 1 if cell.x < target.x else -1 if cell.x > target.x else 0
+	dir.y = 1 if cell.y < target.y else -1 if cell.y > target.y else 0
+	print("cell = ", cell,"target =", target)
 	return dir
 	
 func placeable_direction(placeable:Placeable,from: Placeable)->Vector2i:

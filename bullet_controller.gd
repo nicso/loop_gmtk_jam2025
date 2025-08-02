@@ -9,12 +9,12 @@ var is_moving: bool = false
 
 func _ready() -> void:
 	TurnManager.bullets.push_back(self)
-	bullet.move_to_cell(starting_pos, on_move_finished, true)
-	#bullet.rotation = Vector2(direction).angle() #TODO: change the sprite FlipH, not the rotation
+	bullet.move_to_cell(bullet.starting_cell, on_move_finished, true)
 	bullet.facing = Vector2(direction)
+	#bullet.position = GridManager.get_cell_to_world_position(bullet.starting_cell )+ Vector2.UP * VarGlobals.y_offset
 	
 func move(pos)->void:
-	if is_moving:
+	if is_moving :
 		return
 	is_moving = true
 	bullet.move_to_cell(pos+direction, on_move_finished)

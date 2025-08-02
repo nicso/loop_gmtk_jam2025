@@ -8,5 +8,5 @@ const grid_width := 6
 ## gfx
 const y_offset = 128
 ## animation
-const player_tween = 0.2
-const ennemy_tween = 0.1
+const player_tween = 0.4
+const ennemy_tween = 0.8

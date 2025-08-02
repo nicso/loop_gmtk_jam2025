@@ -11,9 +11,10 @@ var input_map = {
 	"game_up": Vector2.UP
 }
 func _ready() -> void:
-	player.move_to_cell(Vector2i(0,2), on_move_finished)
+	TurnManager.player = get_parent()
+	player.move_to_cell(Vector2i(0,2), on_move_finished, true)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var input_dir = get_inputs_directions()
 	if (TurnManager.is_player_turn() and input_dir != Vector2.ZERO):
 		if(input_dir == player.facing):

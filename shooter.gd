@@ -1,7 +1,7 @@
 extends Node
 class_name Shooter
-const BULLET = preload("res://bullet.tscn")
-@onready var player: Placeable = %Player
+const BULLET = preload("res://bullet.tscn") 
+@onready var player: Placeable = TurnManager.player
 
 func shoot():
 	var shooter_position :Vector2i = GridManager.find_placeable_cell(get_parent())
@@ -10,20 +10,16 @@ func shoot():
 		return
 	for placeable in placeables_on_row:
 		if placeable.is_in_group("player") :
-			print("pew pew")
 			var bullet_spawn_cell = shooter_position + GridManager.placeable_direction(placeable, get_parent()) 
 			if GridManager.get_cell(bullet_spawn_cell) == null:
-				var bullet = BULLET.instantiate() 
-				var bulletController : BulletController = bullet.get_node("BulletController")
+				var bullet:Placeable = BULLET.instantiate() 
 				var player_direction = GridManager.placeable_direction(placeable, get_parent())
 				
-				bullet.position = GridManager.get_cell_to_world_position(Vector2i(shooter_position.x + player_direction.x , shooter_position.y))
-				bulletController.starting_pos = Vector2i(shooter_position.x + player_direction.x , shooter_position.y)
+				bullet.starting_cell = bullet_spawn_cell
 				bullet.get_node("BulletController").direction = Vector2i(player_direction.x , 0)
 				get_tree().root.add_child(bullet)
 				break
 			else :
-				
 				print("could’nt shoot", GridManager.get_cell(bullet_spawn_cell).name)
 
 
