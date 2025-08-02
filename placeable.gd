@@ -20,8 +20,8 @@ func on_turn_finished()->void:
 func move_to_cell(cell:Vector2i  , callback, is_teleport=false)->void:
 	var wrapped_cell = GridManager.wrap_coordinates(cell)
 	if GridManager.get_cell(GridManager.wrap_coordinates( cell) ) != null:
-		#if self.is_in_group("bullet"):
-			#kill()
+		if self.is_in_group("bullet"):
+			kill()
 		callback.call()
 		return
 	if sprite != null:
@@ -37,10 +37,13 @@ func move_to_cell(cell:Vector2i  , callback, is_teleport=false)->void:
 func kill()->void:
 	print("paf")
 	GridManager.set_cell(GridManager.find_placeable_cell(self), null)
-	TurnManager.bullets.erase(self)
-	TurnManager.bullets = TurnManager.bullets.filter(func(bullet): return bullet != null)
+	#TurnManager.bullets.erase(self)
+	#TurnManager.bullets = TurnManager.bullets.filter(func(bullet): return bullet != null)
 	self.queue_free()
-	
+
+func _exit_tree() -> void:
+	TurnManager.bullets.erase(self)
+
 func teleport(to:Vector2i, callback):
 	position = to
 	callback.call()

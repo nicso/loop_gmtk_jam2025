@@ -31,12 +31,20 @@ func process_ennemy_turn()->void:
 		ennemy.move(current_pos + Vector2i.DOWN)
 		await ennemy.ennemy.tween.finished if ennemy.ennemy.tween else get_tree().process_frame
 	
-	for bullet:BulletController in bullets:
-		if bullet == null:
+	for n in range(bullets.size()):
+		if bullets[n] == null:
+			bullets = bullets.filter(func(bullet): bullet!=null)
 			break
+		var bullet:BulletController = bullets[n]
 		var current_pos = GridManager.find_placeable_cell(bullet.bullet)
 		bullet.move(current_pos)
 		await bullet.bullet.tween.finished if bullet.bullet.tween else get_tree().process_frame
+	#for bullet:BulletController in bullets:
+		#if bullet == null:
+			#break
+		#var current_pos = GridManager.find_placeable_cell(bullet.bullet)
+		#bullet.move(current_pos)
+		#await bullet.bullet.tween.finished if bullet.bullet.tween else get_tree().process_frame
 	game_state = STATES.PLAYER_TURN
 	SignalBus.emit_signal("turn_finished")
 	
