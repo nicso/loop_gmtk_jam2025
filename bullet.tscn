@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bgoif8vh4enob" path="res://assets/gfx/sprites/player.png" id="2_2b2rl"]
 [ext_resource type="Script" uid="uid://bjpfarv1w5v45" path="res://bullet_controller.gd" id="3_b7duk"]
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_t4vbm")
 metadata/_custom_type_script = "uid://bgfctrnn43p8o"
 metadata/_edit_group_ = true

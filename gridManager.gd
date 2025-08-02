@@ -56,13 +56,7 @@ func get_placeables_on_rows(cell:Vector2i) -> Array[Placeable]:
 			placeables.append( grid[cell.y][x])
 	return placeables
 
-func get_direction_to_target(cell:Vector2i, target:Vector2i)->Vector2i:
-	var dir = Vector2i.ZERO
-	dir.x = 1 if cell.x < target.x else -1
-	dir.y = 1 if cell.y < target.y else -1
-	return dir
-
-func get_distance_between(cell:Vector2i, target:Vector2i)->int:
+func distance_between(cell:Vector2i, target:Vector2i)->int:
 	var distance = abs(cell.x - target.x) + abs(cell.y - target.y)
 	return distance
 
@@ -87,6 +81,18 @@ func find_placeable_cell(placeable: Placeable) -> Vector2i:
 			if grid[y][x] == placeable:
 				return Vector2i(x, y)
 	return Vector2i(-1, -1)
+	
+func direction_to_target(cell:Vector2i, target:Vector2i)->Vector2i:
+	var dir = Vector2i.ZERO
+	dir.x = 1 if cell.x < target.x else -1
+	dir.y = 1 if cell.y < target.y else -1
+	return dir
+	
+func placeable_direction(placeable:Placeable,from: Placeable)->Vector2i:
+	return direction_to_target(
+				find_placeable_cell(from),
+				find_placeable_cell(placeable))
+
 
 func find_placeables_cell(placeable: Placeable) -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
