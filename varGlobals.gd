@@ -1,7 +1,7 @@
 extends Node
 
 ## grid
-const gridSize = 64
+const gridSize = 512
 const grid_height := 9
 const grid_width := 13  
 

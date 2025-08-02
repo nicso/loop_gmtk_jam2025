@@ -30,9 +30,9 @@ func set_cell(cell: Vector2i, placeable: Placeable):
 	grid[wrapped_cell.y][wrapped_cell.x] = placeable
 
 func get_cell(cell: Vector2i) -> Placeable:
-	if cell.x >= 0 and cell.x < grid_width and cell.y >= 0 and cell.y < grid_height:
-		return grid[cell.y][cell.x]
-	return null  
+	var wrapped_cell = wrap_coordinates(cell)
+	return grid[wrapped_cell.y][wrapped_cell.x]
+ 
 
 func get_cell_to_world_position(cell: Vector2i) -> Vector2:
 	var wrapped_cell = wrap_coordinates(cell)

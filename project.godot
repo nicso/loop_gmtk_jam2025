@@ -24,7 +24,11 @@ GridManager="*res://gridManager.gd"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="uid://bx28hywg1es37"
 
 [input]
 

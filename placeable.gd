@@ -13,6 +13,9 @@ func _process(delta: float) -> void:
 	
 func move_to_cell(cell:Vector2i  , callback, teleport=false)->void:
 	if GridManager.get_cell(GridManager.wrap_coordinates( cell) ) != null:
+		if self.is_in_group("bullet"):
+			
+			print("paf")
 		callback.call()
 		return
 	if sprite != null:

@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://paiajj0kmokm"]
+[gd_scene load_steps=3 format=3 uid="uid://paiajj0kmokm"]
 
 [ext_resource type="Texture2D" uid="uid://b5cq1rly16vwy" path="res://assets/gfx/sprites/cell.png" id="1_yh0nt"]
+[ext_resource type="Script" uid="uid://hgycaj3qcmiu" path="res://cell.gd" id="2_gwrgs"]
 
 [node name="cell" type="Sprite2D"]
 texture = ExtResource("1_yh0nt")
+script = ExtResource("2_gwrgs")
+colors = Array[Color]([Color(0.803922, 0.913725, 0.796078, 1), Color(0.996078, 0.819608, 0.717647, 1), Color(0.74902, 0.901961, 0.843137, 1), Color(0.996078, 0.878431, 0.631373, 1)])
