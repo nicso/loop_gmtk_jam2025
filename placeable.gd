@@ -12,6 +12,8 @@ const PLAYER_UP = preload("res://assets/gfx/sprites/player_up.png")
 
 func _ready() -> void:
 	SignalBus.connect("turn_finished", on_turn_finished)
+	if self.is_in_group("player"):
+		update_sprite_rotation()
 
 func on_turn_finished()->void:
 	#if not self.is_in_group("player"):
@@ -19,8 +21,11 @@ func on_turn_finished()->void:
 
 func move_to_cell(cell:Vector2i  , callback, is_teleport=false)->void:
 	var wrapped_cell = GridManager.wrap_coordinates(cell)
+	if self.is_in_group("bullet"):
+			print_debug("moving bullet")
 	if GridManager.get_cell(GridManager.wrap_coordinates( cell) ) != null:
 		if self.is_in_group("bullet"):
+			print_debug("obstacle in front of a bullet")
 			kill()
 		callback.call()
 		return
@@ -69,7 +74,11 @@ func rotate_toward(dir:Vector2, callback):
 	#tween = null
 	if self.is_in_group("player"):
 		facing = dir
-		match facing:
+		update_sprite_rotation()
+	callback.call()
+	
+func update_sprite_rotation():
+	match facing:
 			Vector2(1,0):
 				sprite.flip_h = true
 				sprite.texture= PLAYER
@@ -82,7 +91,5 @@ func rotate_toward(dir:Vector2, callback):
 			Vector2(0,-1):
 				sprite.flip_h = false
 				sprite.texture= PLAYER_UP
-	callback.call()
-
 func tween_speed()->float:
 	return VarGlobals.player_tween if self.is_in_group("player") else VarGlobals.ennemy_tween

@@ -12,6 +12,10 @@
 position = Vector2(-316, 14)
 starting_cell = Vector2i(5, 0)
 
+[node name="ennemi3" parent="." instance=ExtResource("1_pkg7o")]
+position = Vector2(400, 343)
+starting_cell = Vector2i(4, 3)
+
 [node name="Player" parent="." instance=ExtResource("2_tlwt5")]
 unique_name_in_owner = true
 position = Vector2(-740, 452)
@@ -42,4 +46,4 @@ unique_name_in_owner = true
 layout_mode = 2
 theme = SubResource("Theme_gbfbk")
 theme_override_font_sizes/font_size = 156
-text = "game status"
+text = "player turn"

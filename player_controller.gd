@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 			player.rotate_toward(input_dir, on_move_finished)
 
 func on_move_finished():
-	SignalBus.emit_signal("player_moved")
+	SignalBus.emit_signal("player_turn_finished")
 
 func get_inputs_directions() -> Vector2:
 	for action in input_map:

@@ -87,7 +87,6 @@ func direction_to_target(cell:Vector2i, target:Vector2i)->Vector2i:
 	var dir = Vector2i.ZERO
 	dir.x = 1 if cell.x < target.x else -1 if cell.x > target.x else 0
 	dir.y = 1 if cell.y < target.y else -1 if cell.y > target.y else 0
-	print("cell = ", cell,"target =", target)
 	return dir
 	
 func placeable_direction(placeable:Placeable,from: Placeable)->Vector2i:

@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7do6jwtk4dvr"]
+[gd_scene load_steps=7 format=3 uid="uid://c7do6jwtk4dvr"]
 
 [ext_resource type="Script" uid="uid://bgfctrnn43p8o" path="res://placeable.gd" id="1_t4vbm"]
 [ext_resource type="Texture2D" uid="uid://eqmbypciwgvk" path="res://assets/gfx/sprites/bullet.png" id="2_t4vbm"]
 [ext_resource type="Script" uid="uid://bjpfarv1w5v45" path="res://bullet_controller.gd" id="3_b7duk"]
+[ext_resource type="Script" uid="uid://cq582t5y13pgp" path="res://line_2d.gd" id="4_2b2rl"]
+[ext_resource type="Texture2D" uid="uid://cu1u2h8at58wg" path="res://assets/gfx/sprites/shadow.png" id="5_b7duk"]
+
+[sub_resource type="Curve" id="Curve_t4vbm"]
+_data = [Vector2(0, 1), 0.0, 0.98746, 0, 0, Vector2(0.997778, 0.358621), -1.83537, 0.0, 0, 0]
+point_count = 2
 
 [node name="Bullet" type="Node2D" groups=["bullet"]]
 script = ExtResource("1_t4vbm")
@@ -14,3 +20,22 @@ texture = ExtResource("2_t4vbm")
 
 [node name="BulletController" type="Node" parent="."]
 script = ExtResource("3_b7duk")
+
+[node name="Line2D" type="Line2D" parent="."]
+top_level = true
+z_index = -1
+points = PackedVector2Array(0, 0, 128, 0, 256, 0, 512, 0)
+width = 82.4
+width_curve = SubResource("Curve_t4vbm")
+default_color = Color(0.466667, 0.854902, 0.913725, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 10
+antialiased = true
+script = ExtResource("4_2b2rl")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 120)
+scale = Vector2(0.631262, 0.398117)
+texture = ExtResource("5_b7duk")

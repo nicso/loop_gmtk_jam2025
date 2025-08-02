@@ -6,4 +6,4 @@
 [node name="cell" type="Sprite2D"]
 texture = ExtResource("1_yh0nt")
 script = ExtResource("2_gwrgs")
-colors = Array[Color]([Color(0.803922, 0.913725, 0.796078, 1), Color(0.996078, 0.819608, 0.717647, 1), Color(0.74902, 0.901961, 0.843137, 1), Color(0.996078, 0.878431, 0.631373, 1)])
+colors = Array[Color]([Color(0.803922, 0.913725, 0.796078, 1), Color(0.996078, 0.819608, 0.717647, 1), Color(0.951651, 0.821632, 0.860827, 1), Color(0.996078, 0.878431, 0.631373, 1)])

@@ -10,10 +10,10 @@ func shoot():
 		return
 	for placeable in placeables_on_row:
 		if placeable.is_in_group("player") :
-			var bullet_spawn_cell = shooter_position + GridManager.placeable_direction(placeable, get_parent()) 
+			var player_direction = GridManager.placeable_direction(placeable, get_parent())
+			var bullet_spawn_cell = shooter_position + player_direction 
 			if GridManager.get_cell(bullet_spawn_cell) == null:
 				var bullet:Placeable = BULLET.instantiate() 
-				var player_direction = GridManager.placeable_direction(placeable, get_parent())
 				
 				bullet.starting_cell = bullet_spawn_cell
 				bullet.get_node("BulletController").direction = Vector2i(player_direction.x , 0)
