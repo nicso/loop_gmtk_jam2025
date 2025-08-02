@@ -40,6 +40,7 @@ func get_cell_to_world_position(cell: Vector2i) -> Vector2:
 		(wrapped_cell.x - grid_width/2.0) * VarGlobals.gridSize, 
 		(wrapped_cell.y - grid_height/2.0) * VarGlobals.gridSize
 	)
+	
 	return pos
 
 func get_placeables_on_cols(cell:Vector2i) -> Array[Placeable]:
