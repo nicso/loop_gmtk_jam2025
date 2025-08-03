@@ -1,15 +1,12 @@
 extends Control
 @onready var game_status: Label = %gameStatus
 
-#func _ready() -> void:
-	#SignalBus.connect("turn_finished", on_turn_finished)
+func _ready() -> void:
+	SignalBus.connect("turn_changed", on_turn_finished)
 	
-#func on_turn_finished():
-	#game_status.text = TurnManager.state_to_string()
-	#debug_grid()
-
-func _process(delta: float) -> void:
-	game_status.text = TurnManager.state_to_string()
+func on_turn_finished(turn_type: int):
+	game_status.text = TurnManager.get_current_turn_name()
+	debug_grid()
 	
 func debug_grid():
 	print("------------")

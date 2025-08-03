@@ -11,11 +11,12 @@ const PLAYER_UP = preload("res://assets/gfx/sprites/player_up.png")
 @export var starting_cell : Vector2i
 
 func _ready() -> void:
-	SignalBus.connect("turn_finished", on_turn_finished)
+	SignalBus.connect("turn_changed", on_turn_finished)
+	sprite.flip_h = false if facing == Vector2.LEFT else true
 	if self.is_in_group("player"):
 		update_sprite_rotation()
 
-func on_turn_finished()->void:
+func on_turn_finished(turn_type: int)->void:
 	sprite.flip_h = false if facing == Vector2.LEFT else true
 
 func move_to_cell(cell:Vector2i  , callback, is_teleport=false)->void:

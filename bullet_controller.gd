@@ -9,7 +9,7 @@ var is_moving: bool = false
 var has_moved_from_spawn: bool = true
 
 func _ready() -> void:
-	TurnManager.bullets.append(self)
+	TurnManager.add_bullet(self)
 	bullet.move_to_cell(bullet.starting_cell, on_move_finished, true)
 	bullet.facing = Vector2(direction)
 	#bullet.position = GridManager.get_cell_to_world_position(bullet.starting_cell )+ Vector2.UP * VarGlobals.y_offset
