@@ -10,7 +10,7 @@ var is_moving: bool = false
 func _ready() -> void:
 	TurnManager.ennemies.append(self)
 	ennemy.move_to_cell(ennemy.starting_cell, on_move_finished, true)
-	SignalBus.connect("turn_finished", on_end_of_turn)
+	SignalBus.connect("player_turn_finished", on_end_of_turn)
 
 func move(dir)->void:
 	if is_moving:
@@ -24,7 +24,9 @@ func on_move_finished()->void:
 		shooter.shoot()
 
 func on_end_of_turn()->void:
-	if GridManager.find_placeable_cell(player).x > GridManager.find_placeable_cell(ennemy).x:
+	print("adjust looking direction")
+	print("player cell : ",GridManager.find_placeable_cell(TurnManager.player) , "  ennemy cell : ", GridManager.find_placeable_cell(ennemy))
+	if GridManager.find_placeable_cell(TurnManager.player).x > GridManager.find_placeable_cell(ennemy).x:
 		ennemy.facing = Vector2i.LEFT
 	else:
 		ennemy.facing = Vector2i.RIGHT

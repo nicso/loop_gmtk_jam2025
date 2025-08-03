@@ -12,7 +12,7 @@ var input_map = {
 }
 func _ready() -> void:
 	TurnManager.player = get_parent()
-	player.move_to_cell(Vector2i(0,2), on_move_finished, true)
+	player.move_to_cell(player.starting_cell, on_move_finished, true)
 	
 func _process(_delta: float) -> void:
 	var input_dir = get_inputs_directions()

@@ -7,8 +7,8 @@ var player : Placeable
 
 func _ready() -> void:
 	SignalBus.connect("player_turn_finished", on_player_moved)
-	SignalBus.connect("ennemies_turn_finished", on_ennemies_moved)
-	SignalBus.connect("bullets_turn_finished", on_bullets_moved)
+	#SignalBus.connect("ennemies_turn_finished", on_ennemies_moved)
+	#SignalBus.connect("bullets_turn_finished", on_bullets_moved)
 
 func state_to_string()->String:
 	match game_state:
@@ -20,38 +20,29 @@ func state_to_string()->String:
 			return "bullet turn"
 	return "no turn"
 	
-func on_ennemies_moved()->void:
-	if game_state == STATES.ENNEMI_TURN:
-		game_state = STATES.BULLET_TURN
-		SignalBus.emit_signal("ennemies_turn_finished")
-		SignalBus.emit_signal("turn_finished")
-	pass
-	
-func on_bullets_moved()->void:
-	if game_state == STATES.BULLET_TURN:
-		game_state = STATES.PLAYER_TURN
-		SignalBus.emit_signal("bullets_turn_finished")
-		SignalBus.emit_signal("turn_finished")
-	pass
-
 func on_player_moved()->void:
+	print("pouet", game_state)
 	if game_state == STATES.PLAYER_TURN:
-		game_state = STATES.ENNEMI_TURN
-		SignalBus.emit_signal("player_turn_finished")
+		game_state = STATES.BULLET_TURN
+		#SignalBus.emit_signal("player_turn_finished")
 		SignalBus.emit_signal("turn_finished")
-		await process_ennemy_turn()
+		await process_bullets_turn()
 		
 func process_ennemy_turn()->void:
+	print("--- ennemy turn ---")
 	ennemies = ennemies.filter(func(ennemy): return ennemy != null and is_instance_valid(ennemy) and is_instance_valid(ennemy.ennemy))
 	for n in range(ennemies.size()):
 		var ennemy:EnnemyController = ennemies[n]
 		var current_pos = GridManager.find_placeable_cell(ennemy.ennemy)
 		ennemy.move(current_pos + Vector2i.DOWN)
 		await ennemy.ennemy.tween.finished if ennemy.ennemy.tween else get_tree().process_frame
-	game_state = STATES.BULLET_TURN
-	await prosess_bullets_turn()
+	game_state = STATES.PLAYER_TURN
+	SignalBus.emit_signal("ennemies_turn_finished")
+	SignalBus.emit_signal("turn_finished")
+	#await process_player_turn()
 
-func prosess_bullets_turn()->void:
+func process_bullets_turn()->void:
+	print("--- bullet turn ---")
 	bullets = bullets.filter(func(bullet): return bullet != null and is_instance_valid(bullet) and is_instance_valid(bullet.bullet))
 	for n in range(bullets.size()):
 		print("avant ",bullets[n].get_parent().position.y)
@@ -59,19 +50,22 @@ func prosess_bullets_turn()->void:
 		var pos_a = GridManager.find_placeable_cell(a.bullet)
 		var pos_b = GridManager.find_placeable_cell(b.bullet)
 		
-		# D'abord comparer les y (lignes)
 		if pos_a.y != pos_b.y:
 			return pos_a.y < pos_b.y
-		# Si même ligne, comparer les x (colonnes)
 		return pos_a.x < pos_b.x
 	)
 	for n in range(bullets.size()):
 		print("après ",bullets[n].get_parent().position.y)
 		var bullet:BulletController = bullets[n]
 		var current_pos = GridManager.find_placeable_cell(bullet.bullet)
+		if bullet.has_moved_from_spawn :
+			bullet.get_parent().get_node("Line2D").reset()
 		bullet.move(current_pos)
 		await bullet.bullet.tween.finished if bullet.bullet.tween else get_tree().process_frame
-	game_state = STATES.PLAYER_TURN
+	game_state = STATES.ENNEMI_TURN
+	SignalBus.emit_signal("bullets_turn_finished")
+	SignalBus.emit_signal("turn_finished")
+	await process_ennemy_turn()
 
 func is_player_turn()->bool:
 	return game_state == STATES.PLAYER_TURN

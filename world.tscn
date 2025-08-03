@@ -10,15 +10,12 @@
 
 [node name="ennemi2" parent="." instance=ExtResource("1_pkg7o")]
 position = Vector2(-316, 14)
-starting_cell = Vector2i(5, 0)
-
-[node name="ennemi3" parent="." instance=ExtResource("1_pkg7o")]
-position = Vector2(400, 343)
-starting_cell = Vector2i(4, 3)
+starting_cell = Vector2i(1, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_tlwt5")]
 unique_name_in_owner = true
 position = Vector2(-740, 452)
+starting_cell = Vector2i(4, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-256, -256)

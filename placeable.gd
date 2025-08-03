@@ -16,7 +16,6 @@ func _ready() -> void:
 		update_sprite_rotation()
 
 func on_turn_finished()->void:
-	#if not self.is_in_group("player"):
 	sprite.flip_h = false if facing == Vector2.LEFT else true
 
 func move_to_cell(cell:Vector2i  , callback, is_teleport=false)->void:

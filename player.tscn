@@ -69,6 +69,7 @@ _data = {
 
 [node name="Player" type="Node2D" groups=["player"]]
 script = ExtResource("1_hqtel")
+starting_cell = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://bgfctrnn43p8o"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

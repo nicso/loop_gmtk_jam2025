@@ -6,7 +6,7 @@ var tween: Tween
 @export var starting_pos:Vector2i
 var direction := Vector2i.RIGHT
 var is_moving: bool = false
-var has_moved_from_spawn: bool = false
+var has_moved_from_spawn: bool = true
 
 func _ready() -> void:
 	TurnManager.bullets.append(self)

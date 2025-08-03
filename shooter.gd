@@ -7,6 +7,7 @@ func shoot():
 	var shooter_position :Vector2i = GridManager.find_placeable_cell(get_parent())
 	var placeables_on_row = GridManager.get_placeables_on_rows(shooter_position)
 	if distance_to_player() <= 2:
+		print("player too close : " , distance_to_player())
 		return
 	for placeable in placeables_on_row:
 		if placeable.is_in_group("player") :
@@ -25,6 +26,6 @@ func shoot():
 
 func distance_to_player()->int:
 	var from = GridManager.find_placeable_cell(get_parent())
-	var to = GridManager.find_placeable_cell(player)
+	var to = GridManager.find_placeable_cell(TurnManager.player)
 	return GridManager.distance_between(from, to)
 	

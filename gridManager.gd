@@ -94,7 +94,6 @@ func placeable_direction(placeable:Placeable,from: Placeable)->Vector2i:
 				find_placeable_cell(from),
 				find_placeable_cell(placeable))
 
-
 func find_placeables_cell(placeable: Placeable) -> Array[Vector2i]:
 	var cells: Array[Vector2i] = []
 	for y in range(grid_height):
